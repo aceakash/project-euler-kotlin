@@ -3,13 +3,11 @@ import kotlin.math.sqrt
 fun main() {
     println(problem003(41))
     println(problem003(600851475143))
-    benchmarkProblem003(600851475143)
+    benchmark("problem003", 600851475143, ::problem003)
 
     println(problem003_v2(13195))
     println(problem003_v2(600851475143))
-    benchmarkProblem003_v2(600851475143)
-
-
+    benchmark("problem003", 600851475143, ::problem003_v2)
 }
 
 fun problem003(num: Long): Long {
@@ -50,40 +48,23 @@ fun problem003_v2(num: Long): Long {
     return remaining
 }
 
-fun benchmarkProblem003(num: Long): Unit {
+fun benchmark(name: String, num: Long, block: (Long) -> Long) {
     // warmup
-    for (i in 1..1000) {
-        problem003(num)
+    for (i in 1..10) {
+        block(num)
     }
 
     // benchmark
     val times = 1000
     val startTime = System.nanoTime()
     for (i in 1..times) {
-        problem003(num)
+        block(num)
     }
 
     val endTime = System.nanoTime()
     val duration = ((endTime - startTime)) / 1_000_000 // convert to ms
-    println("problem003($num), running $times times, took: $duration ms")
+    println("$name($num), running $times times, took: $duration ms")
 }
 
-fun benchmarkProblem003_v2(num: Long): Unit {
-    // warmup
-    for (i in 1..1000) {
-        problem003_v2(num)
-    }
-
-    // benchmark
-    val times = 1000
-    val startTime = System.nanoTime()
-    for (i in 1..times) {
-        problem003_v2(num)
-    }
-
-    val endTime = System.nanoTime()
-    val duration = ((endTime - startTime)) / 1_000_000 // convert to ms
-    println("problem003_v2($num), running $times times, took: $duration ms")
-}
 
 
