@@ -1,5 +1,6 @@
 import kotlin.math.sqrt
 
+
 fun isPrime(num: Long): Boolean {
     // Numbers less than 2 are not prime.
     if (num < 2) return false
