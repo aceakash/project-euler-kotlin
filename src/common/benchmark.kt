@@ -5,10 +5,7 @@ import java.lang.Math.floorDiv
 fun benchmark(name: String, block: () -> Unit) {
     println("Running benchmark for $name ...")
 
-    // warmup
-    block()
-
-    // calibrate
+    // warmup and calibrate
 
     var startTime = System.nanoTime()
     val calibrateIterationCount = 2
@@ -17,11 +14,12 @@ fun benchmark(name: String, block: () -> Unit) {
     }
     var endTime = System.nanoTime()
     val meanTimeNs = (endTime - startTime) / calibrateIterationCount
-    println("Warmup complete. Mean time per iteration: $meanTimeNs ns")
 
     val targetBenchmarkTimeNs = 10 * 1_000_000_000L
-    val remainingBenchmarkTimeNs = targetBenchmarkTimeNs - (endTime - startTime)
-    println("remainingBenchmarkTimeNs: $remainingBenchmarkTimeNs ns")
+    var remainingBenchmarkTimeNs = targetBenchmarkTimeNs - (endTime - startTime)
+    if (remainingBenchmarkTimeNs <= 0) {
+        remainingBenchmarkTimeNs = targetBenchmarkTimeNs
+    }
 
     val iterations = floorDiv(remainingBenchmarkTimeNs, meanTimeNs)
 
@@ -36,7 +34,6 @@ fun benchmark(name: String, block: () -> Unit) {
 
     // format with commas
     val meanDurationNsFormatted = "%,d".format(meanDurationNs)
-
-        println("Benchmark finished. Ran $iterations times at a mean of $meanDurationNsFormatted ns per iteration")
+    println("... benchmark finished. Ran $iterations times at a mean of $meanDurationNsFormatted ns per iteration")
 
 }

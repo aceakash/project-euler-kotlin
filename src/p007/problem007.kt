@@ -1,9 +1,11 @@
 package p007
 
+import common.benchmark
 import common.isPrime
 
 fun main() {
-    println(problem007(10001))
+    println(problem007(10001)) // Output: 104743
+    benchmark("problem007") { problem007(10001) }
 }
 
 fun problem007(n: Int): Long {

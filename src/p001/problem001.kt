@@ -1,7 +1,7 @@
 package p001
 
 fun main() {
-    println(problem001(3, 5, 1000))
+    println(problem001(3, 5, 1000)) // Output: 233168
 }
 
 fun problem001(num1: Int, num2: Int, below: Int): Int {

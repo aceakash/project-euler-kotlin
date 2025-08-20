@@ -1,7 +1,7 @@
 package p002
 
 fun main() {
-    println(problem002(4_000_000))
+    println(problem002(4_000_000)) // Output: 4613732
 }
 
 fun problem002(below: Int): Long {

@@ -2,6 +2,7 @@ package p005
 
 import common.benchmark
 import common.getPrimeFactors
+import kotlin.collections.toMutableList
 
 fun main() {
     println(problem005(1, 20))
@@ -36,9 +37,9 @@ fun problem005_v2(from: Int, to: Int): Int {
 fun leastCommonMultiple(num1: Int, num2: Int): Int {
 
 
-    val primeFactors1 = getPrimeFactors(num1)
+    val primeFactors1 = getPrimeFactors(num1.toLong())
 //    println("Prime factors of $num1: $primeFactors1")
-    val primeFactors2 = getPrimeFactors(num2)
+    val primeFactors2 = getPrimeFactors(num2.toLong())
 //    println("Prime factors of $num2: $primeFactors2")
     val commonFactors = intersect(primeFactors1, primeFactors2)
 //    println("Common factors: $commonFactors")
@@ -64,9 +65,9 @@ fun isDivisibleByAll(candidate: Int, nums: List<Int>): Boolean {
     return true
 }
 
-fun intersect(a: List<Int>, b: List<Int>): List<Int> {
+fun intersect(a: List<Long>, b: List<Long>): List<Long> {
     val mutableB = b.toMutableList()
-    val intersection = mutableListOf<Int>()
+    val intersection = mutableListOf<Long>()
 
     for (item in a) {
         if (mutableB.contains(item)) {

@@ -3,7 +3,7 @@ package p004
 import common.benchmark
 
 fun main() {
-    println(problem004(100, 999))
+    println(problem004(100, 999)) // Output: 906609
     println(problem004_optimised(100, 999))
     println(problem004_functional(100, 999))
 

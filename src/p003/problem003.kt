@@ -6,7 +6,7 @@ import kotlin.math.sqrt
 
 fun main() {
 //    println(problem003(41))
-    println(problem003(600851475143))
+    println(problem003(600851475143)) // Output: 6857
     benchmark("problem003", { problem003(600851475143) })
 
 //    println(problem003_v2(13195))
