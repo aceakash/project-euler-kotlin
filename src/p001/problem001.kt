@@ -1,3 +1,5 @@
+package p001
+
 fun main() {
     println(problem001(3, 5, 1000))
 }

@@ -1,3 +1,5 @@
+package common
+
 import kotlin.system.measureTimeMillis
 
 fun main() {
