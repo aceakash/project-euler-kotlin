@@ -1,3 +1,7 @@
+package p007
+
+import common.isPrime
+
 fun main() {
     println(problem007(10001))
 }

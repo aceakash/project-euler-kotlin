@@ -2,6 +2,7 @@ package common
 
 import kotlin.math.sqrt
 
+var knownPrimes = mutableListOf<Int>(2)
 
 fun isPrime(num: Long): Boolean {
     // Numbers less than 2 are not prime.
@@ -22,3 +23,27 @@ fun isPrime(num: Long): Boolean {
 
     return true
 }
+
+fun getPrimeFactors(num: Int): List<Int> {
+    if (num < 2) return emptyList()
+
+    if (num in knownPrimes) {
+        return listOf(num)
+    }
+
+    if (num == 3) {
+        knownPrimes.add(3)
+        return listOf(3)
+    }
+
+    val upto = sqrt(num.toDouble()).toInt() + 1
+    for (i in 2 .. upto) {
+        if (num % i == 0) {
+            return getPrimeFactors(i) + getPrimeFactors(num/i)
+        }
+    }
+    knownPrimes.add(num)
+//    println("Known primes: $knownPrimes")
+    return listOf(num)
+}
+
