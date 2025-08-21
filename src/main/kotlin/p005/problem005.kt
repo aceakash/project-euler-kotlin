@@ -2,7 +2,10 @@ package p005
 
 import common.benchmark
 import common.getPrimeFactors
+import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlin.collections.toMutableList
+
+private val logger = KotlinLogging.logger {}
 
 fun main() {
     println(problem005(1, 20)) // Output: 232792560
@@ -26,33 +29,27 @@ fun problem005(from: Int, to: Int): Int {
 fun problem005_v2(from: Int, to: Int): Int {
     var answer = from
     for (i in (from+1)..to) {
-//        println("Calculating LCM of $answer and $i")
+        logger.trace { "Calculating LCM of $answer and $i" }
         answer = leastCommonMultiple(answer, i)
-//        println("New answer: $answer")
-
+        logger.trace { "New answer: $answer" }
     }
     return answer
 }
 
 fun leastCommonMultiple(num1: Int, num2: Int): Int {
-
-
     val primeFactors1 = getPrimeFactors(num1.toLong())
-//    println("Prime factors of $num1: $primeFactors1")
+    logger.trace { "Prime factors of $num1: $primeFactors1" }
     val primeFactors2 = getPrimeFactors(num2.toLong())
-//    println("Prime factors of $num2: $primeFactors2")
+    logger.trace { "Prime factors of $num2: $primeFactors2" }
     val commonFactors = intersect(primeFactors1, primeFactors2)
-//    println("Common factors: $commonFactors")
-
     if (commonFactors.isEmpty()) {
+        logger.trace { "No common factors found for $num1 and $num2" }
         return num1 * num2 // if no common factors, return product
     }
-
+    logger.trace { "Common factors found: $commonFactors" }
     val prod = commonFactors.reduce { acc, factor ->
         acc * factor
     }
-//    println("Product of common factors: $prod")
-
     return ((num1.toLong() * num2.toLong()) / prod.toLong()).toInt()
 }
 

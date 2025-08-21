@@ -1,7 +1,11 @@
 package p001
 
+import io.github.oshai.kotlinlogging.KotlinLogging
+
+private val logger = KotlinLogging.logger {}
+
 fun main() {
-    println(problem001(3, 5, 1000)) // Output: 233168
+    logger.info { problem001(3, 5, 1000) } // Output: 233168
 }
 
 fun problem001(num1: Int, num2: Int, below: Int): Int {

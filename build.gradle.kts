@@ -11,6 +11,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
+    implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.5.18")
 }
 
 tasks.test {

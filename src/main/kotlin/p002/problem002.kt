@@ -5,8 +5,6 @@ fun main() {
 }
 
 fun problem002(below: Int): Long {
-    // 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...
-    // sum of 1, 2, 3, 5, 8 =
     var prev = 2
     var value = 3
 
